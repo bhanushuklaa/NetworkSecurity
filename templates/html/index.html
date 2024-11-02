@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="refresh">
+    <title>Encryption Assistant</title>
+    <!--Css Files Link-->
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'css/graph.css' %}">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--Js Files Link-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="" style="border:4px double #b9d400;">
+            <header class="cont">
+                <video class="video" playsinline autoplay loop muted>
+                    <source src="{% static 'image/bg3.mp4' %}" type="video/mp4" />
+                </video>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                    </div>
+                    <div class="col-md-5 text-center columnFirst">
+                        <span class="firstBorder">
+                            <b style="font-size: 50px;">
+                                𝐞𝓷ⒸŘƳ𝐩𝓽ίＯⓃ <br><span
+                                    style="border-bottom:5px dotted #b9d400;">𝓐𝕊𝕤ƗＳ𝓽𝐚𝐧𝐭</span>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="p1 m-3">Welcome! to EA, providing Best features....</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+
+                    </div>
+                </div>
+                <div class="col-sm-7"></div>
+            </header>
+        </div>
+        <script>
+            function rand(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            function getRandomLetter() {
+                var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+                return alphabet[rand(0, alphabet.length - 1)]
+            }
+            function getRandomWord(word) {
+                var text = word.innerHTML
+
+                var finalWord = ''
+                for (var i = 0; i < text.length; i++) {
+                    finalWord += text[i] == ' ' ? ' ' : getRandomLetter()
+                }
+
+                return finalWord
+            }
+
+            var word = document.querySelector('p')
+            var interv = 'undefined'
+            var canChange = false
+            var globalCount = 0
+            var count = 0
+            var INITIAL_WORD = word.innerHTML;
+            var isGoing = false
+
+            function init() {
+                if (isGoing) return;
+
+                isGoing = true
+                var randomWord = getRandomWord(word)
+                word.innerHTML = randomWord
+
+                interv = setInterval(function () {
+                    var finalWord = ''
+                    for (var x = 0; x < INITIAL_WORD.length; x++) {
+                        if (x <= count && canChange) {
+                            finalWord += INITIAL_WORD[x]
+                        } else {
+                            finalWord += getRandomLetter()
+                        }
+                    }
+                    word.innerHTML = finalWord
+                    if (canChange) {
+                        count++
+                    }
+                    if (globalCount >= 20) {
+                        canChange = true
+                    }
+                    if (count >= INITIAL_WORD.length) {
+                        clearInterval(interv)
+                        count = 0
+                        canChange = false
+                        globalCount = 0
+                        isGoing = false
+                    }
+                    globalCount++
+                }, 50)
+
+            }
+            word.addEventListener('mouseenter', init)
+        </script>
+    </div>
+</body>
+
+</html>

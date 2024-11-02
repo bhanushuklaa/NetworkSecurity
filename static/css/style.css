@@ -1,0 +1,44 @@
+* {
+    font-family: Courier New;
+    color: #d3d700;
+}
+
+.container {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.columnFirst {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px 0px 10px 0px;
+}
+
+.firstBorder {
+    padding: 10px;
+    border-radius: 0px 0px 13px 13px;
+}
+
+.p1 {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    height: 100px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+.cont {
+    position: relative;
+    height: 85vh;
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
